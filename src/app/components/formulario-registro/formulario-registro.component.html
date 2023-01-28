@@ -1,0 +1,97 @@
+<form [formGroup]="formularioRegistro" (submit)="registrarUsuario()">
+    <div class="row">
+        <div class="container text-left">
+            <div class="row align-items-start">
+                <div class="col">
+                    <label class="form-label">Nombre:</label>
+                    <input type="text" class="form-control" placeholder="Nombre" formControlName="nombre">
+                    <div class="invalido" *ngIf="controles.nombre.errors?.['required'] && controles.nombre.dirty">El
+                        nombre es requerido</div>
+                    <div class="invalido" *ngIf="controles.nombre.errors?.['pattern'] && controles.nombre.dirty">No se
+                        permiten caracteres especiales</div>
+                    <div class="invalido" *ngIf="controles.nombre.errors?.['minlength'] && controles.nombre.dirty">El
+                        nombre debe ser mayor a dos letras</div>
+                </div>
+                <div class="col">
+                    <label class="form-label">Primer Apellido:</label>
+                    <input type="text" class="form-control" placeholder="Primer Apellido"
+                        formControlName="primerApellido">
+                    <div class="invalido"
+                        *ngIf="controles.primerApellido.errors?.['required'] && controles.primerApellido.dirty">El
+                        primer apellido es requerido</div>
+                    <div class="invalido"
+                        *ngIf="controles.primerApellido.errors?.['pattern'] && controles.primerApellido.dirty">No se
+                        permiten caracteres especiales</div>
+                    <div class="invalido"
+                        *ngIf="controles.primerApellido.errors?.['minlength'] && controles.primerApellido.dirty">El
+                        primer apellido debe ser mayor a dos letras</div>
+                </div>
+                <div class="col">
+                    <label class="form-label">Segundo Apellido:</label>
+                    <input type="text" class="form-control" placeholder="Segundo Apellido"
+                        formControlName="segundoApellido">
+                    <div class="invalido"
+                        *ngIf="controles.segundoApellido.errors?.['pattern'] && controles.segundoApellido.dirty">No se
+                        permiten caracteres especiales</div>
+                    <div class="invalido"
+                        *ngIf="controles.segundoApellido.errors?.['minlength'] && controles.segundoApellido.dirty">El
+                        segundo apellido debe ser mayor a dos letras</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="container text-left">
+            <div class="row align-items-start">
+                <div class="col">
+                    <label class="form-label">Edad</label>
+                    <input type="number" class="form-control" placeholder="Edad" formControlName="edad">
+                    <div class="invalido" *ngIf="controles.edad.errors?.['min'] && controles.edad.dirty">
+                        Debes
+                        ser mayor de 18 años</div>
+                    <div class="invalido" *ngIf="controles.edad.errors?.['max'] && controles.edad.dirty">
+                        Debes
+                        ser menor de 99 años</div>
+                    <div class="invalido" *ngIf="controles.edad.errors?.['required'] && controles.edad.dirty">La
+                        edad
+                        es requerida </div>
+                </div>
+                <div class="col">
+                    <label class="form-label">Sexo</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" value="femenino" formControlName="sexo">
+                        <label class="form-check-label">
+                            Femenino
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" value="masculino" formControlName="sexo">
+                        <label class="form-check-label">
+                            Masculino
+                        </label>
+                    </div>
+                    <div class="invalido" *ngIf="controles.sexo.errors?.['required'] && controles.sexo.dirty">
+                        Debes seleccionar una opción</div>
+                </div>
+                <div class="col">
+                    <label for="exampleInputPassword1" class="form-label">Curso</label>
+                    <select class="form-select" aria-label="Default select example" formControlName="curso">
+                        <option selected>Selecciona una opción</option>
+                        <option value="angular">Angular</option>
+                        <option value="react">React</option>
+                        <option value="css">CSS</option>
+                        <option value="python">Python</option>
+                        <option value="php">PHP</option>
+                    </select>
+                    <div class="invalido" *ngIf="controles.curso.errors?.['required'] && controles.curso.dirty">
+                        Debes seleccionar una opción</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="alert alert-success" *ngIf="registroExitoso">
+        Te registraste correctamente.
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="formularioRegistro.invalid">Registrar</button>
+    <button type="reset" class="btn btn-danger">Reset</button>
+</form>
